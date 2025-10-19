@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PenjualanPerangkat" default="run" basedir=".">
+    
+    <!-- SET PROPERTY - SESUAIKAN DENGAN NAMA PROJECT ANDA -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="main.class" value="Dialogue.PenjualanPerangkatElektronik"/>
+    
+    <!-- CLASSPATH UNTUK SEMUA LIBRARY -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+    
+    <!-- BERSIHKAN FOLDER BUILD -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
+    <!-- COMPILE SEMUA JAVA CODE -->
+    <target name="compile" depends="clean">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+        <echo message="✅ Compile Java success!"/>
+    </target>
+    
+    <!-- BUAT JAR FILE -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/PenjualanPerangkat.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Class-Path" value="
+                    ../lib/jasperreports-6.20.0.jar 
+                    ../lib/commons-collections4-4.4.jar 
+                    ../lib/commons-beanutils-1.9.4.jar 
+                    ../lib/commons-collections-3.2.2.jar 
+                    ../lib/commons-digester-2.1.jar 
+                    ../lib/commons-logging-1.2.jar 
+                    ../lib/postgresql-42.6.0.jar
+                "/>
+            </manifest>
+        </jar>
+        <echo message="✅ JAR created: ${dist.dir}/PenjualanPerangkat.jar"/>
+    </target>
+    
+    <!-- RUN APPLICATION -->
+    <target name="run" depends="jar">
+        <java jar="${dist.dir}/PenjualanPerangkat.jar" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${dist.dir}/PenjualanPerangkat.jar"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- COMPILE JRXML KE JASPER -->
+    <target name="compile-report" depends="compile">
+        <java classname="Dialogue.CompileJRXML" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${build.dir}"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <!-- BUILD SEMUA TANPA RUN -->
+    <target name="build-all" depends="jar">
+        <echo message="✅ Build completed! Run with: ant run"/>
+    </target>
+
+</project>

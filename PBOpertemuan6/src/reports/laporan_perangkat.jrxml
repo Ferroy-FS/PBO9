@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan_perangkat" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6df8abf-18c7-4847-9bb9-3fd6a3b73eca">
+	<queryString>
+		<![CDATA[SELECT 
+            nomor_seri, 
+            jenis_perangkat, 
+            merek_perangkat, 
+            nama_perangkat 
+        FROM penjualan_perangkat_elektronik
+        ORDER BY nomor_seri]]>
+	</queryString>
+	<field name="nomor_seri" class="java.lang.String"/>
+	<field name="jenis_perangkat" class="java.lang.String"/>
+	<field name="merek_perangkat" class="java.lang.String"/>
+	<field name="nama_perangkat" class="java.lang.String"/>
+	<title>
+		<band height="100">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="f72cee40-9471-4cff-a381-0f24ea7a7018"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PERANGKAT ELEKTRONIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="555" height="20" uuid="09805b3d-19c2-4516-962b-2fa6cf8d28e1"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jalan ***************** no. **, Surabaya, Jawa Timur kode pos ******]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="555" height="1" uuid="92d88c2b-a8fc-4cdc-bad8-b6f26430784e"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="50" width="555" height="20" uuid="8184ba93-211a-4fa9-90db-7da65be1cb7f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[email: elecs**hop**id**@gmail.com telp: +62************]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="20" uuid="a118a95b-16f1-4df7-b418-e0ce5861b9f8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DAFTAR PERANGKAT ELEKTRONIK]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="30" uuid="828902e3-aef5-4b77-addf-45f0662241eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nomor Seri]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="0" width="120" height="30" uuid="26dee39f-b105-4192-914a-a431be9fef71"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis Perangkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="0" width="120" height="30" uuid="a4693896-9f4e-484c-b329-56028a9aa868"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Merek Perangkat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="195" height="30" uuid="d6b119aa-3ef0-40b7-b4c4-7f20c9b3f6fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Perangkat]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<textField>
+				<reportElement x="0" y="0" width="120" height="25" uuid="949930d5-5ed5-4bd6-9a7f-e8f8919beb3b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomor_seri}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="120" height="25" uuid="6ee88ce0-94c5-4dc1-9fd2-e38f91ad891d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jenis_perangkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="120" height="25" uuid="c1475ed1-c692-4959-95f8-bc6ed1d6ffcc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{merek_perangkat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="195" height="25" uuid="684c1f8b-6795-408d-80fa-272462b3ecf8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nama_perangkat}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30">
+			<textField>
+				<reportElement x="400" y="5" width="150" height="20" uuid="8c1ba8be-9f28-4a23-a737-bdf7bd4d42ab"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
